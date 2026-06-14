@@ -1,0 +1,26 @@
+[project]
+name = "pypy"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "docling>=2.64.0",
+    "fastapi>=0.135.2",
+    "google-generativeai>=0.8.5",
+    "instructor>=1.13.0",
+    "ipykernel>=7.1.0",
+    "lancedb>=0.25.3",
+    "pandas>=2.3.3",
+    "pgvector>=0.4.2",
+    "psycopg2-binary>=2.9.11",
+    "pydantic-ai>=1.27.0",
+    "pydantic-settings>=2.12.0",
+    "pypdf>=6.9.2",
+    "python-dotenv>=1.2.1",
+    "sentence-transformers>=5.1.2",
+    "streamlit>=1.52.1",
+    "tantivy>=0.25.1",
+    "torch>=2.9.1",
+    "uvicorn>=0.38.0",
+]

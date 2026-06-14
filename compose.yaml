@@ -1,0 +1,15 @@
+services:
+  vector-db:
+    image: timescale/timescaledb-ha:pg17
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    volumes:
+      - vector-db-data:/var/lib/postgresql/data
+
+volumes:
+  vector-db-data:
+

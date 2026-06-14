@@ -1,0 +1,6 @@
+export const FEATURE_FLAGS = {
+  ENABLE_COMPARE_MODE: true,
+  ENABLE_STUDY_MODE: true,
+  ENABLE_MULTIMODAL: true,
+  ENABLE_VOICE: true,
+};

@@ -1,0 +1,1042 @@
+{
+  "file": "E:\\Soubhagya miss\\pypy\\frontend\\public\\uploads\\60a4fb1b0abe9ed4750823176623d50a28a7c86337f1273cbb99baa7940010a6.pdf",
+  "metadata": {
+    "source": "Machine Learning Notes.pdf",
+    "subject": "Machine Learning",
+    "semester": 6,
+    "department": "Engineering",
+    "document_id": 11,
+    "document_version_id": 11,
+    "checksum": "60a4fb1b0abe9ed4750823176623d50a28a7c86337f1273cbb99baa7940010a6"
+  },
+  "stats": {
+    "total_chunks": 52,
+    "processed": 52,
+    "pushed": 52,
+    "failed": 0,
+    "batches": 3,
+    "embedding_backend": "local"
+  },
+  "processed_chunks": [
+    {
+      "index": 0,
+      "content_type": "text",
+      "keywords": [
+        "these",
+        "notes",
+        "concise",
+        "exam",
+        "oriented",
+        "suitable",
+        "ktu",
+        "style",
+        "preparation"
+      ],
+      "chapter": "Machine Learning Notes (Modules 1-3)",
+      "section": null,
+      "timestamp": 1781426549.1212668
+    },
+    {
+      "index": 1,
+      "content_type": "text",
+      "keywords": [
+        "spam",
+        "machine",
+        "learning",
+        "branch",
+        "where",
+        "computers",
+        "learn",
+        "patterns",
+        "data",
+        "make",
+        "predictions",
+        "decisions"
+      ],
+      "chapter": "What is Machine Learning?",
+      "section": null,
+      "timestamp": 1781426549.1685946
+    },
+    {
+      "index": 2,
+      "content_type": "text",
+      "keywords": [
+        "trains",
+        "using",
+        "labeled",
+        "data",
+        "input",
+        "correct",
+        "output",
+        "goal",
+        "learn",
+        "mapping",
+        "inputs",
+        "outputs"
+      ],
+      "chapter": "1. Supervised Learning",
+      "section": null,
+      "timestamp": 1781426549.2913344
+    },
+    {
+      "index": 3,
+      "content_type": "text",
+      "keywords": [
+        "house",
+        "price",
+        "prediction",
+        "email",
+        "spam",
+        "detection",
+        "image",
+        "classification"
+      ],
+      "chapter": "Applications:",
+      "section": null,
+      "timestamp": 1781426549.4021645
+    },
+    {
+      "index": 4,
+      "content_type": "text",
+      "keywords": [
+        "regression",
+        "linear",
+        "logistic",
+        "decision",
+        "trees",
+        "naive",
+        "bayes"
+      ],
+      "chapter": "Algorithms:",
+      "section": null,
+      "timestamp": 1781426549.4271705
+    },
+    {
+      "index": 5,
+      "content_type": "text",
+      "keywords": [
+        "input",
+        "output",
+        "house",
+        "size",
+        "price",
+        "student",
+        "hours",
+        "studied",
+        "exam",
+        "marks"
+      ],
+      "chapter": "Example:",
+      "section": null,
+      "timestamp": 1781426549.4527054
+    },
+    {
+      "index": 6,
+      "content_type": "text",
+      "keywords": [
+        "uses",
+        "unlabeled",
+        "data",
+        "finds",
+        "hidden",
+        "structures",
+        "patterns"
+      ],
+      "chapter": "2. Unsupervised Learning",
+      "section": null,
+      "timestamp": 1781426549.4799364
+    },
+    {
+      "index": 7,
+      "content_type": "text",
+      "keywords": [
+        "customer",
+        "segmentation",
+        "data",
+        "clustering",
+        "market",
+        "basket",
+        "analysis"
+      ],
+      "chapter": "Applications:",
+      "section": null,
+      "timestamp": 1781426549.508582
+    },
+    {
+      "index": 8,
+      "content_type": "text",
+      "keywords": [
+        "means",
+        "hierarchical",
+        "clustering"
+      ],
+      "chapter": "Common algorithms:",
+      "section": null,
+      "timestamp": 1781426549.530612
+    },
+    {
+      "index": 9,
+      "content_type": "text",
+      "keywords": [
+        "data",
+        "combines",
+        "small",
+        "labeled",
+        "large",
+        "unlabeled",
+        "useful",
+        "when",
+        "labeling",
+        "expensive"
+      ],
+      "chapter": "3. Semi-Supervised Learning",
+      "section": null,
+      "timestamp": 1781426549.559423
+    },
+    {
+      "index": 10,
+      "content_type": "text",
+      "keywords": [
+        "medical",
+        "image",
+        "classification",
+        "only",
+        "few",
+        "expert",
+        "labeled",
+        "scans"
+      ],
+      "chapter": "Example:",
+      "section": null,
+      "timestamp": 1781426549.5884426
+    },
+    {
+      "index": 11,
+      "content_type": "text",
+      "keywords": [
+        "agent",
+        "learns",
+        "interacting",
+        "environment",
+        "receives",
+        "rewards",
+        "penalties",
+        "goal",
+        "maximize",
+        "cumulative",
+        "reward"
+      ],
+      "chapter": "4. Reinforcement Learning",
+      "section": null,
+      "timestamp": 1781426549.622602
+    },
+    {
+      "index": 12,
+      "content_type": "text",
+      "keywords": [
+        "agent",
+        "environment",
+        "action",
+        "state",
+        "reward"
+      ],
+      "chapter": "Components:",
+      "section": null,
+      "timestamp": 1781426549.6467247
+    },
+    {
+      "index": 13,
+      "content_type": "text",
+      "keywords": [
+        "robotics",
+        "self",
+        "driving",
+        "cars",
+        "chess",
+        "playing"
+      ],
+      "chapter": "Applications:",
+      "section": null,
+      "timestamp": 1781426549.6727276
+    },
+    {
+      "index": 14,
+      "content_type": "text",
+      "keywords": [
+        "chooses",
+        "parameter",
+        "values",
+        "make",
+        "observed",
+        "data",
+        "most",
+        "likely"
+      ],
+      "chapter": "Maximum Likelihood Estimation (MLE)",
+      "section": null,
+      "timestamp": 1781426549.7010055
+    },
+    {
+      "index": 15,
+      "content_type": "code",
+      "keywords": [
+        "theta",
+        "hat",
+        "mle",
+        "arg",
+        "max",
+        "data",
+        "mid"
+      ],
+      "chapter": "Formula",
+      "section": null,
+      "timestamp": 1781426549.748231
+    },
+    {
+      "index": 16,
+      "content_type": "text",
+      "keywords": [
+        "given",
+        "several",
+        "possible",
+        "parameter",
+        "values",
+        "pick",
+        "one",
+        "best",
+        "explains",
+        "observed",
+        "data"
+      ],
+      "chapter": "Intuition",
+      "section": null,
+      "timestamp": 1781426549.7748759
+    },
+    {
+      "index": 17,
+      "content_type": "code",
+      "keywords": [
+        "theta",
+        "data",
+        "map",
+        "prior",
+        "uses",
+        "observed",
+        "hat",
+        "arg",
+        "max",
+        "mle",
+        "maximizes",
+        "information"
+      ],
+      "chapter": "Advantages",
+      "section": null,
+      "timestamp": 1781426549.8604183
+    },
+    {
+      "index": 18,
+      "content_type": "code",
+      "keywords": [
+        "frac",
+        "mid",
+        "based",
+        "bayes",
+        "theorem",
+        "genui",
+        "math",
+        "block",
+        "widget",
+        "always",
+        "prefetch",
+        "content"
+      ],
+      "chapter": "Bayesian Formulation",
+      "section": null,
+      "timestamp": 1781426549.9307594
+    },
+    {
+      "index": 19,
+      "content_type": "text",
+      "keywords": [
+        "data",
+        "belief",
+        "prior",
+        "initial",
+        "likelihood",
+        "probability",
+        "given",
+        "hypothesis",
+        "posterior",
+        "updated",
+        "after",
+        "seeing"
+      ],
+      "chapter": "Where:",
+      "section": null,
+      "timestamp": 1781426549.9673212
+    },
+    {
+      "index": 20,
+      "content_type": "text",
+      "keywords": [
+        "regression",
+        "predicts",
+        "continuous",
+        "numerical",
+        "values"
+      ],
+      "chapter": "Regression",
+      "section": null,
+      "timestamp": 1781426549.992845
+    },
+    {
+      "index": 21,
+      "content_type": "text",
+      "keywords": [
+        "prediction",
+        "salary",
+        "temperature",
+        "house",
+        "price",
+        "estimation"
+      ],
+      "chapter": "Example:",
+      "section": null,
+      "timestamp": 1781426550.019576
+    },
+    {
+      "index": 22,
+      "content_type": "text",
+      "keywords": [
+        "relationship",
+        "between",
+        "one",
+        "input",
+        "output",
+        "genui",
+        "math",
+        "block",
+        "widget",
+        "always",
+        "prefetch",
+        "content"
+      ],
+      "chapter": "Linear Regression (One Variable)",
+      "section": null,
+      "timestamp": 1781426550.0708086
+    },
+    {
+      "index": 23,
+      "content_type": "code",
+      "keywords": [
+        "uses",
+        "multiple",
+        "input",
+        "features",
+        "cdots",
+        "useful",
+        "when",
+        "prediction",
+        "depends",
+        "many",
+        "factors",
+        "such"
+      ],
+      "chapter": "Linear Regression (Multiple Variables)",
+      "section": null,
+      "timestamp": 1781426550.1150029
+    },
+    {
+      "index": 24,
+      "content_type": "text",
+      "keywords": [
+        "optimization",
+        "algorithm",
+        "used",
+        "minimize",
+        "prediction",
+        "error"
+      ],
+      "chapter": "Gradient Descent",
+      "section": null,
+      "timestamp": 1781426550.1406982
+    },
+    {
+      "index": 25,
+      "content_type": "text",
+      "keywords": [
+        "parameters",
+        "compute",
+        "initialize",
+        "randomly",
+        "predictions",
+        "calculate",
+        "cost",
+        "error",
+        "gradients",
+        "update",
+        "repeat",
+        "until"
+      ],
+      "chapter": "Steps",
+      "section": null,
+      "timestamp": 1781426550.2233393
+    },
+    {
+      "index": 26,
+      "content_type": "code",
+      "keywords": [
+        "too",
+        "theta",
+        "large",
+        "overshoots",
+        "minimum",
+        "small",
+        "converges",
+        "slowly",
+        "exact",
+        "solution",
+        "learning",
+        "rate"
+      ],
+      "chapter": "Learning rate (\u03b1):",
+      "section": null,
+      "timestamp": 1781426550.2902873
+    },
+    {
+      "index": 27,
+      "content_type": "text",
+      "keywords": [
+        "computationally",
+        "expensive",
+        "very",
+        "large",
+        "datasets"
+      ],
+      "chapter": "Disadvantage:",
+      "section": null,
+      "timestamp": 1781426550.318118
+    },
+    {
+      "index": 28,
+      "content_type": "text",
+      "keywords": [
+        "occurs",
+        "when",
+        "model",
+        "memorizes",
+        "training",
+        "data",
+        "instead",
+        "learning",
+        "general",
+        "patterns"
+      ],
+      "chapter": "Overfitting",
+      "section": null,
+      "timestamp": 1781426550.346329
+    },
+    {
+      "index": 29,
+      "content_type": "text",
+      "keywords": [
+        "very",
+        "high",
+        "training",
+        "accuracy",
+        "poor",
+        "performance",
+        "unseen",
+        "data"
+      ],
+      "chapter": "Symptoms",
+      "section": null,
+      "timestamp": 1781426550.369333
+    },
+    {
+      "index": 30,
+      "content_type": "text",
+      "keywords": [
+        "more",
+        "training",
+        "data",
+        "regularization",
+        "simpler",
+        "models",
+        "cross",
+        "validation"
+      ],
+      "chapter": "Prevention",
+      "section": null,
+      "timestamp": 1781426550.4008808
+    },
+    {
+      "index": 31,
+      "content_type": "text",
+      "keywords": [
+        "spam",
+        "sigma",
+        "frac",
+        "logistic",
+        "regression",
+        "used",
+        "binary",
+        "classification",
+        "examples",
+        "pass",
+        "fail",
+        "disease"
+      ],
+      "chapter": "Linear Methods for Classification",
+      "section": null,
+      "timestamp": 1781426550.4589303
+    },
+    {
+      "index": 32,
+      "content_type": "text",
+      "keywords": [
+        "based",
+        "bayes",
+        "theorem",
+        "assumes",
+        "features",
+        "conditionally",
+        "independent"
+      ],
+      "chapter": "Naive Bayes",
+      "section": null,
+      "timestamp": 1781426550.483141
+    },
+    {
+      "index": 33,
+      "content_type": "text",
+      "keywords": [
+        "well",
+        "fast",
+        "works",
+        "text",
+        "classification",
+        "performs",
+        "small",
+        "datasets"
+      ],
+      "chapter": "Advantages",
+      "section": null,
+      "timestamp": 1781426550.5092373
+    },
+    {
+      "index": 34,
+      "content_type": "text",
+      "keywords": [
+        "spam",
+        "detection",
+        "sentiment",
+        "analysis",
+        "document",
+        "classification"
+      ],
+      "chapter": "Applications",
+      "section": null,
+      "timestamp": 1781426550.532938
+    },
+    {
+      "index": 35,
+      "content_type": "text",
+      "keywords": [
+        "tree",
+        "based",
+        "classifier",
+        "where",
+        "root",
+        "starting",
+        "decision",
+        "internal",
+        "nodes",
+        "attribute",
+        "tests",
+        "leaves"
+      ],
+      "chapter": "Decision Tree (ID3 Algorithm)",
+      "section": null,
+      "timestamp": 1781426550.5654829
+    },
+    {
+      "index": 36,
+      "content_type": "text",
+      "keywords": [
+        "gain",
+        "attribute",
+        "compute",
+        "entropy",
+        "calculate",
+        "information",
+        "each",
+        "choose",
+        "highest",
+        "split",
+        "data",
+        "repeat"
+      ],
+      "chapter": "ID3 selects attributes using Information Gain. Process",
+      "section": null,
+      "timestamp": 1781426550.6026654
+    },
+    {
+      "index": 37,
+      "content_type": "text",
+      "keywords": [
+        "easy",
+        "interpret",
+        "handles",
+        "categorical",
+        "data",
+        "well"
+      ],
+      "chapter": "Advantages",
+      "section": null,
+      "timestamp": 1781426550.6284177
+    },
+    {
+      "index": 38,
+      "content_type": "text",
+      "keywords": [
+        "simplest",
+        "neural",
+        "network",
+        "model",
+        "binary",
+        "classification"
+      ],
+      "chapter": "Perceptron",
+      "section": null,
+      "timestamp": 1781426550.6535885
+    },
+    {
+      "index": 39,
+      "content_type": "code",
+      "keywords": [
+        "cases",
+        "text",
+        "inputs",
+        "weights",
+        "weighted",
+        "sum",
+        "activation",
+        "function",
+        "output",
+        "decision",
+        "rule",
+        "begin"
+      ],
+      "chapter": "Components",
+      "section": null,
+      "timestamp": 1781426550.7056453
+    },
+    {
+      "index": 40,
+      "content_type": "text",
+      "keywords": [
+        "layer",
+        "input",
+        "one",
+        "more",
+        "hidden",
+        "layers",
+        "output",
+        "information",
+        "flows",
+        "only",
+        "forward",
+        "direction"
+      ],
+      "chapter": "Contains:",
+      "section": null,
+      "timestamp": 1781426550.7373166
+    },
+    {
+      "index": 41,
+      "content_type": "text",
+      "keywords": [
+        "learns",
+        "complex",
+        "nonlinear",
+        "relationships",
+        "used",
+        "image",
+        "recognition",
+        "nlp",
+        "speech",
+        "processing"
+      ],
+      "chapter": "Advantages",
+      "section": null,
+      "timestamp": 1781426550.7670765
+    },
+    {
+      "index": 42,
+      "content_type": "code",
+      "keywords": [
+        "sigmoid",
+        "sigma",
+        "frac",
+        "output",
+        "smooth",
+        "differentiable",
+        "used",
+        "probabilities"
+      ],
+      "chapter": "Activation Functions",
+      "section": null,
+      "timestamp": 1781426550.812304
+    },
+    {
+      "index": 43,
+      "content_type": "code",
+      "keywords": [
+        "max",
+        "fast",
+        "computation",
+        "avoids",
+        "saturation",
+        "positive",
+        "values",
+        "most",
+        "widely",
+        "used",
+        "deep",
+        "learning"
+      ],
+      "chapter": "2. ReLU (Rectified Linear Unit)",
+      "section": null,
+      "timestamp": 1781426550.862711
+    },
+    {
+      "index": 44,
+      "content_type": "code",
+      "keywords": [
+        "tanh",
+        "frac",
+        "output",
+        "range",
+        "zero",
+        "centered",
+        "often",
+        "performs",
+        "better",
+        "than",
+        "sigmoid",
+        "hidden"
+      ],
+      "chapter": "3. Tanh",
+      "section": null,
+      "timestamp": 1781426550.9037626
+    },
+    {
+      "index": 45,
+      "content_type": "text",
+      "keywords": [
+        "backpropagation",
+        "trains",
+        "neural",
+        "networks",
+        "updating",
+        "weights",
+        "reduce",
+        "prediction",
+        "error"
+      ],
+      "chapter": "Backpropagation Algorithm",
+      "section": null,
+      "timestamp": 1781426550.9299982
+    },
+    {
+      "index": 46,
+      "content_type": "text",
+      "keywords": [
+        "error",
+        "compute",
+        "forward",
+        "propagation",
+        "output",
+        "calculate",
+        "loss",
+        "propagate",
+        "backward",
+        "through",
+        "layers",
+        "gradients"
+      ],
+      "chapter": "Steps",
+      "section": null,
+      "timestamp": 1781426550.9734952
+    },
+    {
+      "index": 47,
+      "content_type": "text",
+      "keywords": [
+        "svm",
+        "supervised",
+        "learning",
+        "algorithm",
+        "mainly",
+        "used",
+        "classification",
+        "sometimes",
+        "regression"
+      ],
+      "chapter": "Support Vector Machine (SVM)",
+      "section": null,
+      "timestamp": 1781426551.007071
+    },
+    {
+      "index": 48,
+      "content_type": "text",
+      "keywords": [
+        "margin",
+        "hyperplane",
+        "data",
+        "points",
+        "find",
+        "optimal",
+        "separates",
+        "classes",
+        "maximum",
+        "support",
+        "vectors",
+        "closest"
+      ],
+      "chapter": "Key Idea",
+      "section": null,
+      "timestamp": 1781426551.048469
+    },
+    {
+      "index": 49,
+      "content_type": "text",
+      "keywords": [
+        "effective",
+        "high",
+        "dimensional",
+        "spaces",
+        "works",
+        "well",
+        "small",
+        "medium",
+        "sized",
+        "datasets",
+        "model",
+        "nonlinear"
+      ],
+      "chapter": "Advantages",
+      "section": null,
+      "timestamp": 1781426551.0800467
+    },
+    {
+      "index": 50,
+      "content_type": "text",
+      "keywords": [
+        "recognition",
+        "face",
+        "text",
+        "classification",
+        "bioinformatics",
+        "handwriting"
+      ],
+      "chapter": "Common Applications",
+      "section": null,
+      "timestamp": 1781426551.137612
+    },
+    {
+      "index": 51,
+      "content_type": "text",
+      "keywords": [
+        "key",
+        "point",
+        "data",
+        "learning",
+        "using",
+        "supervised",
+        "labeled",
+        "unlabeled",
+        "values",
+        "outputs",
+        "uses",
+        "semi"
+      ],
+      "chapter": "Quick Exam Revision Topic Key Point",
+      "section": null,
+      "timestamp": 1781426551.2688224
+    }
+  ],
+  "pushed_chunk_indexes": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "pushed_batches": [
+    {
+      "batch_size": 25,
+      "last_chunk_index": 24,
+      "timestamp": 1781426550.332982
+    },
+    {
+      "batch_size": 25,
+      "last_chunk_index": 49,
+      "timestamp": 1781426551.2067144
+    },
+    {
+      "batch_size": 2,
+      "last_chunk_index": 51,
+      "timestamp": 1781426551.280583
+    }
+  ],
+  "completed_at": 1781426551.2926016
+}

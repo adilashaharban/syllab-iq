@@ -1,0 +1,544 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum UserRole {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
+enum UserStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum MessageSender {
+  USER
+  ASSISTANT
+  SYSTEM
+}
+
+enum ChatMode {
+  SUBJECT
+  BOOK_ONLY
+  MULTIMODAL
+  VOICE
+}
+
+enum DocumentStatus {
+  UPLOADED
+  PENDING_APPROVAL
+  APPROVED
+  QUEUED
+  PARSING
+  CHUNKING
+  EMBEDDING
+  INDEXING
+  READY
+  FAILED
+  ARCHIVED
+  REJECTED
+}
+
+enum DocumentCategory {
+  TEXTBOOK
+  REFERENCE_BOOK
+  LECTURE_NOTES
+  PPT
+  SYLLABUS
+  MARKING_SCHEME
+  PREVIOUS_YEAR_PAPER
+  LAB_MANUAL
+}
+
+enum ConfidenceLevel {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum ChunkContentType {
+  TEXT
+  TABLE
+  CODE
+  EQUATION
+  CAPTION
+  LIST
+}
+
+enum QuestionDifficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum FigureType {
+  IMAGE
+  LOGIC_CIRCUIT
+  ELECTRICAL_SCHEMATIC
+  NETWORK_TOPOLOGY
+  STATE_MACHINE
+  UML
+  PIPELINE
+  ARCHITECTURE
+  SIGNAL_WAVEFORM
+  FLOWCHART
+  BLOCK_DIAGRAM
+  GRAPH
+  TABLE
+  EQUATION_IMAGE
+}
+
+enum VisualType {
+  UNKNOWN
+  TEXTBOOK_PAGE
+  HANDWRITTEN_NOTE
+  CIRCUIT
+  FLOWCHART
+  BLOCK_DIAGRAM
+  GRAPH
+  TABLE
+  EQUATION
+  PHOTO
+}
+
+model User {
+  id               Int                @id @default(autoincrement())
+  email            String             @unique
+  passwordHash     String
+  fullName         String
+  phone            String             @unique
+  role             UserRole
+  status           UserStatus
+  college          String
+  profileImage     String?
+  isActive         Boolean            @default(true)
+  lastLogin        DateTime?
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  admissionYear    Int?
+  graduationYear   Int?
+  selectedSemester Int?
+  branchId         Int?
+  currentScheme    Int?
+  department       String?
+  employeeId       String?
+  branch           Branch?            @relation(fields: [branchId], references: [id])
+  chatSessions     ChatSession[]
+  documentVersions DocumentVersion[]
+  teacherSubjects  TeacherSubject[]
+  courseEnrollments CourseEnrollment[]
+  questionSets     QuestionSet[]
+  studyPacks       StudyPack[]
+
+  @@index([branchId])
+}
+
+model Branch {
+  id           Int           @id @default(autoincrement())
+  name         String        @unique
+  semesters    Semester[]
+  subjects     Subject[]
+  users        User[]
+  chatSessions ChatSession[]
+}
+
+model Semester {
+  id             Int           @id @default(autoincrement())
+  branchId       Int
+  semesterNumber Int
+  branch         Branch        @relation(fields: [branchId], references: [id])
+  subjects       Subject[]
+  
+  @@unique([branchId, semesterNumber])
+  @@index([branchId])
+}
+
+model Subject {
+  id                Int                @id @default(autoincrement())
+  code              String
+  name              String
+  semesterId        Int
+  branchId          Int
+  schemeYear        Int
+  credits           Int
+  isArchived        Boolean            @default(false)
+  documentCount     Int                @default(0)
+  semester          Semester           @relation(fields: [semesterId], references: [id])
+  branch            Branch             @relation(fields: [branchId], references: [id])
+  teacherSubjects   TeacherSubject[]
+  courseEnrollments CourseEnrollment[]
+  chatSessions      ChatSession[]
+  documents         Document[]
+  questionSets      QuestionSet[]
+  retrievalLogs     RetrievalLog[]
+  concepts          Concept[]
+  studyPacks        StudyPack[]
+
+  @@unique([code, branchId, schemeYear])
+  @@index([branchId])
+  @@index([semesterId])
+  @@index([schemeYear])
+}
+
+model TeacherSubject {
+  id         Int      @id @default(autoincrement())
+  teacherId  Int
+  subjectId  Int
+  assignedAt DateTime @default(now())
+  assignedBy Int?
+  teacher    User     @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  subject    Subject  @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+  @@unique([teacherId, subjectId])
+  @@index([teacherId])
+  @@index([subjectId])
+}
+
+model CourseEnrollment {
+  id        Int      @id @default(autoincrement())
+  studentId Int
+  subjectId Int
+  status    String   @default("ACTIVE")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  student   User     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  subject   Subject  @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, subjectId])
+  @@index([studentId])
+  @@index([subjectId])
+}
+
+model ChatSession {
+  id        Int           @id @default(autoincrement())
+  userId    Int
+  branchId  Int
+  semester  Int
+  subjectId Int
+  title     String
+  chatMode  ChatMode      @default(SUBJECT)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  branch    Branch        @relation(fields: [branchId], references: [id], onDelete: Cascade)
+  subject   Subject       @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  messages  ChatMessage[]
+
+  @@index([userId])
+  @@index([subjectId])
+  @@index([branchId])
+}
+
+model ChatMessage {
+  id        Int         @id @default(autoincrement())
+  sessionId Int
+  sender    MessageSender
+  message   String
+  metadata  Json?
+  timestamp DateTime    @default(now())
+  session   ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+}
+
+model Document {
+  id             Int               @id @default(autoincrement())
+  title          String
+  description    String?
+  subjectId      Int
+  branchId       Int
+  semesterId     Int
+  schemeYear     Int
+  category       DocumentCategory
+  language       String            @default("en")
+  sourcePriority Int               @default(100)
+  deletedAt      DateTime?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  subject        Subject           @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  versions       DocumentVersion[]
+
+  @@index([subjectId])
+  @@index([branchId])
+  @@index([semesterId])
+  @@index([schemeYear])
+  @@index([category])
+  @@index([deletedAt])
+}
+
+model DocumentVersion {
+  id               Int            @id @default(autoincrement())
+  documentId       Int
+  version          Int
+  status           DocumentStatus @default(UPLOADED)
+  filePath         String
+  originalFilename String
+  checksum         String
+  fileSize         Int
+  mimeType         String
+  isLatest         Boolean        @default(true)
+  chunkCount       Int            @default(0)
+  parserVersion    String?
+  processingError  String?
+  uploadedFrom     String?
+  uploaderId       Int
+  approvedBy       Int?
+  approvedAt       DateTime?
+  queuedAt         DateTime?
+  parsedAt         DateTime?
+  embeddedAt       DateTime?
+  indexedAt        DateTime?
+  deletedAt        DateTime?
+  approvalComment  String?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  document         Document       @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  uploader         User           @relation(fields: [uploaderId], references: [id], onDelete: Cascade)
+  chunks           Chunk[]
+  figures          Figure[]
+  tables           Table[]
+  equations        Equation[]
+
+  @@unique([checksum])
+  @@index([status])
+  @@index([isLatest])
+  @@index([approvedAt])
+  @@index([deletedAt])
+  @@index([documentId])
+  @@index([uploaderId])
+}
+
+model Chunk {
+  id                Int              @id @default(autoincrement())
+  documentVersionId Int
+  chunkIndex        Int
+  text              String
+  pageNumberStart   Int
+  pageNumberEnd     Int
+  sectionTitle      String?
+  contentType       ChunkContentType @default(TEXT)
+  embeddingId       String?
+  tokenCount        Int
+  metadata          Json?
+  createdAt         DateTime         @default(now())
+  documentVersion   DocumentVersion  @relation(fields: [documentVersionId], references: [id], onDelete: Cascade)
+
+  @@index([documentVersionId])
+  @@index([contentType])
+}
+
+model Figure {
+  id                Int             @id @default(autoincrement())
+  documentVersionId Int
+  pageNumber        Int
+  caption           String?
+  figureType        FigureType      @default(IMAGE)
+  imagePath         String
+  thumbnailPath     String?
+  embeddingId       String?
+  boundingBoxes     Json?
+  metadata          Json?
+  createdAt         DateTime        @default(now())
+  documentVersion   DocumentVersion @relation(fields: [documentVersionId], references: [id], onDelete: Cascade)
+
+  @@index([documentVersionId])
+}
+
+model Table {
+  id                Int             @id @default(autoincrement())
+  documentVersionId Int
+  pageNumber        Int
+  caption           String?
+  csvRepresentation String
+  embeddingId       String?
+  boundingBoxes     Json?
+  createdAt         DateTime        @default(now())
+  documentVersion   DocumentVersion @relation(fields: [documentVersionId], references: [id], onDelete: Cascade)
+
+  @@index([documentVersionId])
+}
+
+model Equation {
+  id                Int             @id @default(autoincrement())
+  documentVersionId Int
+  pageNumber        Int
+  rawText           String
+  latexRepresentation String?
+  confidence        Float
+  boundingBoxes     Json?
+  embeddingId       String?
+  createdAt         DateTime        @default(now())
+  documentVersion   DocumentVersion @relation(fields: [documentVersionId], references: [id], onDelete: Cascade)
+
+  @@index([documentVersionId])
+}
+
+model ImageQuery {
+  id                Int        @id @default(autoincrement())
+  userId            Int
+  uploadedImagePath String
+  visualType        VisualType @default(UNKNOWN)
+  matchedDocumentId Int?
+  matchedFigureId   Int?
+  matchedEquationId Int?
+  confidence        Float
+  retrievalMetadata Json?
+  timestamp         DateTime   @default(now())
+}
+
+model QuestionSet {
+  id         Int                @id @default(autoincrement())
+  teacherId  Int
+  subjectId  Int
+  topic      String
+  difficulty QuestionDifficulty
+  createdAt  DateTime           @default(now())
+  teacher    User               @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  subject    Subject            @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  questions  GeneratedQuestion[]
+
+  @@index([teacherId])
+  @@index([subjectId])
+}
+
+model GeneratedQuestion {
+  id            Int         @id @default(autoincrement())
+  questionSetId Int
+  question      String
+  answer        String
+  citations     Json?
+  questionSet   QuestionSet @relation(fields: [questionSetId], references: [id], onDelete: Cascade)
+
+  @@index([questionSetId])
+}
+
+model RetrievalLog {
+  id                 Int       @id @default(autoincrement())
+  query              String
+  userId             Int
+  subjectId          Int
+  branchId           Int?
+  schemeYear         Int?
+  semester           Int?
+  selectedBookFilter String?
+  topK               Int       @default(10)
+  rerankerVersion    String?
+  retrievedChunks    Json?
+  latency            Int
+  confidence         ConfidenceLevel
+  retrievalConfig    Json?
+  retrievalVersion   String?
+  timestamp          DateTime  @default(now())
+  subject            Subject   @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([subjectId])
+}
+
+enum ConceptEdgeType {
+  PREREQUISITE
+  RELATED
+  ADVANCED_TOPIC
+  COMMON_CONFUSION
+}
+
+model Concept {
+  id          Int           @id @default(autoincrement())
+  slug        String        @unique
+  name        String
+  subjectId   Int
+  description String?
+  subject     Subject       @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  edgesFrom   ConceptEdge[] @relation("FromConcept")
+  edgesTo     ConceptEdge[] @relation("ToConcept")
+
+  @@index([subjectId])
+}
+
+model ConceptEdge {
+  id            Int             @id @default(autoincrement())
+  fromConceptId Int
+  toConceptId   Int
+  relationship  ConceptEdgeType
+  graphVersion  String?
+  fromConcept   Concept         @relation("FromConcept", fields: [fromConceptId], references: [id], onDelete: Cascade)
+  toConcept     Concept         @relation("ToConcept", fields: [toConceptId], references: [id], onDelete: Cascade)
+
+  @@unique([fromConceptId, toConceptId, relationship])
+  @@index([fromConceptId])
+  @@index([toConceptId])
+}
+
+model StudyPack {
+  id            Int                @id @default(autoincrement())
+  userId        Int
+  subjectId     Int
+  topic         String
+  summary       String
+  sources       Json?              
+  createdAt     DateTime           @default(now())
+  user          User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject       Subject            @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  cards         Flashcard[]
+  questions     PracticeQuestion[]
+  quizAttempts  QuizAttempt[]
+
+  @@index([userId])
+  @@index([subjectId])
+}
+
+model Flashcard {
+  id          Int       @id @default(autoincrement())
+  studyPackId Int
+  front       String
+  back        String
+  studyPack   StudyPack @relation(fields: [studyPackId], references: [id], onDelete: Cascade)
+
+  @@index([studyPackId])
+}
+
+model PracticeQuestion {
+  id                Int                @id @default(autoincrement())
+  studyPackId       Int
+  question          String
+  answer            String
+  options           Json?              
+  studyPack         StudyPack          @relation(fields: [studyPackId], references: [id], onDelete: Cascade)
+  questionAttempts  QuestionAttempt[]
+
+  @@index([studyPackId])
+}
+
+model QuizAttempt {
+  id               Int               @id @default(autoincrement())
+  userId           Int
+  studyPackId      Int
+  score            Int
+  completedAt      DateTime          @default(now())
+  studyPack        StudyPack         @relation(fields: [studyPackId], references: [id], onDelete: Cascade)
+  questionAttempts QuestionAttempt[]
+
+  @@index([userId])
+  @@index([studyPackId])
+}
+
+model QuestionAttempt {
+  id                 Int              @id @default(autoincrement())
+  quizAttemptId      Int
+  practiceQuestionId Int
+  selectedAnswer     String
+  isCorrect          Boolean
+  quizAttempt        QuizAttempt      @relation(fields: [quizAttemptId], references: [id], onDelete: Cascade)
+  practiceQuestion   PracticeQuestion @relation(fields: [practiceQuestionId], references: [id], onDelete: Cascade)
+
+  @@index([quizAttemptId])
+  @@index([practiceQuestionId])
+}
