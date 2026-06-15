@@ -100,6 +100,44 @@ interface AdminControlCenterProps {
   documentVersions: DocumentVersionData[];
 }
 
+function getStatusDisplay(status: string) {
+  const statusUpper = (status || "").toUpperCase();
+  switch (statusUpper) {
+    case "READY":
+      return { label: "Ready", className: "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" };
+    case "FAILED":
+      return { label: "Failed", className: "bg-red-500/10 text-red-400 border border-red-500/20" };
+    case "PENDING_APPROVAL":
+      return { label: "Pending Approval", className: "bg-yellow-500/10 text-yellow-400 border border-yellow-500/20" };
+    case "APPROVED":
+      return { label: "Approved", className: "bg-indigo-500/10 text-indigo-400 border border-indigo-500/20" };
+    case "QUEUED":
+      return { label: "Queued", className: "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20" };
+    case "PARSING":
+      return { label: "Parsing", className: "bg-blue-500/10 text-blue-400 border border-blue-500/20 animate-pulse" };
+    case "OCR":
+      return { label: "OCR", className: "bg-purple-500/10 text-purple-400 border border-purple-500/20 animate-pulse" };
+    case "IMAGE_EXTRACTION":
+      return { label: "Image Extraction", className: "bg-pink-500/10 text-pink-400 border border-pink-500/20 animate-pulse" };
+    case "CHUNKING":
+      return { label: "Chunking", className: "bg-teal-500/10 text-teal-400 border border-teal-500/20 animate-pulse" };
+    case "EMBEDDING":
+      return { label: "Embedding", className: "bg-sky-500/10 text-sky-400 border border-sky-500/20 animate-pulse" };
+    case "INDEXING":
+      return { label: "Indexing", className: "bg-violet-500/10 text-violet-400 border border-violet-500/20 animate-pulse" };
+    case "UPLOADED":
+      return { label: "Uploaded", className: "bg-gray-500/10 text-gray-400 border border-gray-500/20" };
+    case "ARCHIVED":
+      return { label: "Archived", className: "bg-orange-500/10 text-orange-400 border border-orange-500/20" };
+    case "REJECTED":
+      return { label: "Rejected", className: "bg-rose-500/10 text-rose-400 border border-rose-500/20" };
+    case "PENDING":
+      return { label: "Pending", className: "bg-amber-500/10 text-amber-400 border border-amber-500/20" };
+    default:
+      return { label: "Processing", className: "bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 animate-pulse" };
+  }
+}
+
 export function AdminControlCenter({
   students,
   teachers,
@@ -162,7 +200,11 @@ export function AdminControlCenter({
     e.preventDefault();
     clearMessages();
     try {
-      await createBranch(newBranchName);
+      const res = await createBranch(newBranchName);
+      if (res && !res.success) {
+        setErrorMessage(res.error || "Failed to create branch");
+        return;
+      }
       setNewBranchName("");
       setSuccessMessage("Branch and Semesters 1-8 created successfully!");
     } catch (err: any) {
@@ -174,7 +216,7 @@ export function AdminControlCenter({
     e.preventDefault();
     clearMessages();
     try {
-      await createSubject({
+      const res = await createSubject({
         code: newSubCode,
         name: newSubName,
         branchId: Number(newSubBranch),
@@ -182,6 +224,10 @@ export function AdminControlCenter({
         schemeYear: Number(newSubScheme),
         credits: Number(newSubCredits),
       });
+      if (res && !res.success) {
+        setErrorMessage(res.error || "Failed to create subject");
+        return;
+      }
       setNewSubCode("");
       setNewSubName("");
       setSuccessMessage("Subject created successfully!");
@@ -892,19 +938,14 @@ export function AdminControlCenter({
                       </td>
                       <td className="p-4">
                         <div className="flex flex-col gap-1">
-                          <span
-                            className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase w-fit ${
-                              v.status === "READY"
-                                ? "bg-emerald-500/10 text-emerald-400"
-                                : v.status === "PENDING_APPROVAL"
-                                ? "bg-yellow-500/10 text-yellow-400"
-                                : v.status === "FAILED"
-                                ? "bg-red-500/10 text-red-400"
-                                : "bg-indigo-500/15 text-indigo-300"
-                            }`}
-                          >
-                            {v.status}
-                          </span>
+                          {(() => {
+                            const badge = getStatusDisplay(v.status);
+                            return (
+                              <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase w-fit ${badge.className}`}>
+                                {badge.label}
+                              </span>
+                            );
+                          })()}
                           {v.status === "FAILED" && v.processingError && (
                             <span className="text-[10px] text-red-400 font-medium">Reason: {v.processingError}</span>
                           )}

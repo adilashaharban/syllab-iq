@@ -35,25 +35,39 @@ export async function toggleUserActive(userId: number, currentActive: boolean) {
 }
 
 export async function createBranch(name: string) {
-  await verifyAdmin();
-  const trimmed = name.trim();
-  if (!trimmed) throw new Error("Branch name required");
+  try {
+    await verifyAdmin();
+    const trimmed = name.trim();
+    if (!trimmed) {
+      return { success: false, error: "Branch name required" };
+    }
 
-  // Automatically create semesters 1 to 8 when a new branch is created!
-  const branch = await prisma.branch.create({
-    data: { name: trimmed },
-  });
-
-  for (let sem = 1; sem <= 8; sem++) {
-    await prisma.semester.create({
-      data: {
-        branchId: branch.id,
-        semesterNumber: sem,
-      },
+    const existing = await prisma.branch.findUnique({
+      where: { name: trimmed },
     });
-  }
+    if (existing) {
+      return { success: false, error: "Branch with this name already exists" };
+    }
 
-  revalidatePath("/admin/dashboard");
+    // Automatically create semesters 1 to 8 when a new branch is created!
+    const branch = await prisma.branch.create({
+      data: { name: trimmed },
+    });
+
+    for (let sem = 1; sem <= 8; sem++) {
+      await prisma.semester.create({
+        data: {
+          branchId: branch.id,
+          semesterNumber: sem,
+        },
+      });
+    }
+
+    revalidatePath("/admin/dashboard");
+    return { success: true };
+  } catch (err: any) {
+    return { success: false, error: err.message || "Failed to create branch" };
+  }
 }
 
 export async function createSubject(data: {
@@ -64,34 +78,71 @@ export async function createSubject(data: {
   schemeYear: number;
   credits: number;
 }) {
-  await verifyAdmin();
+  try {
+    await verifyAdmin();
 
-  // Find corresponding semester
-  const semester = await prisma.semester.findUnique({
-    where: {
-      branchId_semesterNumber: {
-        branchId: data.branchId,
-        semesterNumber: data.semesterNumber,
+    const codeUpper = data.code.trim().toUpperCase();
+    const nameTrimmed = data.name.trim();
+
+    if (!codeUpper || !nameTrimmed) {
+      return { success: false, error: "Subject code and name are required" };
+    }
+
+    // 1. Verify branch exists
+    const branch = await prisma.branch.findUnique({
+      where: { id: data.branchId },
+    });
+    if (!branch) {
+      return { success: false, error: "The selected branch does not exist." };
+    }
+
+    // 2. Verify semester exists for this branch mapping
+    const semester = await prisma.semester.findUnique({
+      where: {
+        branchId_semesterNumber: {
+          branchId: data.branchId,
+          semesterNumber: data.semesterNumber,
+        },
       },
-    },
-  });
+    });
 
-  if (!semester) {
-    throw new Error("Specified semester/branch combination does not exist");
+    if (!semester) {
+      return { success: false, error: "Specified semester/branch combination does not exist." };
+    }
+
+    // 3. Verify subject code is unique for this branch and schemeYear
+    const existingSubject = await prisma.subject.findFirst({
+      where: {
+        code: codeUpper,
+        branchId: data.branchId,
+        schemeYear: data.schemeYear,
+      },
+    });
+
+    if (existingSubject) {
+      return {
+        success: false,
+        error: `Subject code ${codeUpper} is already registered under branch ${branch.name} for scheme ${data.schemeYear}.`,
+      };
+    }
+
+    await prisma.subject.create({
+      data: {
+        code: codeUpper,
+        name: nameTrimmed,
+        branchId: data.branchId,
+        semesterId: semester.id,
+        schemeYear: data.schemeYear,
+        credits: data.credits,
+      },
+    });
+
+    revalidatePath("/admin/dashboard");
+    revalidatePath("/student/dashboard");
+    return { success: true };
+  } catch (err: any) {
+    return { success: false, error: err.message || "Failed to create subject" };
   }
-
-  await prisma.subject.create({
-    data: {
-      code: data.code.trim().toUpperCase(),
-      name: data.name.trim(),
-      branchId: data.branchId,
-      semesterId: semester.id,
-      schemeYear: data.schemeYear,
-      credits: data.credits,
-    },
-  });
-
-  revalidatePath("/admin/dashboard");
 }
 
 export async function assignTeacherSubject(teacherId: number, subjectId: number) {
@@ -238,6 +289,11 @@ async function processDocument(versionId: number) {
     const result = await response.json();
     if (!result.success) {
       throw new Error(result.error || "FastAPI ingestion reported failure");
+    }
+
+    if (result.queued) {
+      console.log("Ingestion queued asynchronously. Background job is processing in Python.");
+      return;
     }
 
     // 5. READY & Update isLatest version logic

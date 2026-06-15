@@ -37,24 +37,20 @@ export default async function StudentChatPage({ searchParams }: ChatPageProps) {
     redirect("/onboarding");
   }
 
-  // Verify student course enrollment
-  const enrollment = await prisma.courseEnrollment.findUnique({
+  // Verify student has access to this subject based on branch, scheme, and non-archived status
+  const subject = await prisma.subject.findFirst({
     where: {
-      studentId_subjectId: {
-        studentId: student.id,
-        subjectId: subjectId,
-      },
+      id: subjectId,
+      branchId: student.branchId ?? undefined,
+      schemeYear: student.currentScheme ?? undefined,
+      isArchived: false,
     },
     include: {
-      subject: {
-        include: {
-          semester: true,
-        },
-      },
+      semester: true,
     },
   });
 
-  if (!enrollment || enrollment.status !== "ACTIVE" || enrollment.subject.isArchived) {
+  if (!subject) {
     redirect("/student/dashboard");
   }
 

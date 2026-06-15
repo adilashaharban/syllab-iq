@@ -1,970 +1,605 @@
 {
-  "file": "E:\\Soubhagya miss\\pypy\\frontend\\public\\uploads\\60a4fb1b0abe9ed4750823176623d50a28a7c86337f1273cbb99baa7940010a6.pdf",
+  "file": "E:\\Soubhagya miss\\pypy\\frontend\\public\\uploads\\d05fa0bf6bde826ddd39791db07b0bc1515814cef82a4f5f617dd2f734267969.pdf",
+  "status": "ready",
+  "progress": 1.0,
   "metadata": {
-    "source": "Machine Learning Notes.pdf",
-    "subject": "Machine Learning",
-    "semester": 6,
+    "source": "Module 4 System Software Notes - Kerala Notes.pdf",
+    "subject": "SYSTEM SOFTWARE",
+    "semester": 1,
     "department": "Engineering",
-    "document_id": 11,
-    "document_version_id": 11,
-    "checksum": "60a4fb1b0abe9ed4750823176623d50a28a7c86337f1273cbb99baa7940010a6"
+    "document_id": 18,
+    "document_version_id": 18,
+    "checksum": "d05fa0bf6bde826ddd39791db07b0bc1515814cef82a4f5f617dd2f734267969"
   },
   "stats": {
-    "total_chunks": 52,
-    "processed": 52,
-    "pushed": 52,
+    "total_chunks": 36,
+    "processed": 36,
+    "pushed": 36,
     "failed": 0,
-    "batches": 3,
+    "batches": 2,
     "embedding_backend": "local"
   },
   "processed_chunks": [
     {
       "index": 0,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "these",
-        "notes",
-        "concise",
-        "exam",
-        "oriented",
-        "suitable",
-        "ktu",
-        "style",
-        "preparation"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Machine Learning Notes (Modules 1-3)",
-      "section": null,
-      "timestamp": 1781426549.1212668
+      "chapter": "Page 1",
+      "section": "Figure 1",
+      "timestamp": 1781465395.4538453
     },
     {
       "index": 1,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "spam",
-        "machine",
-        "learning",
-        "branch",
-        "where",
-        "computers",
-        "learn",
-        "patterns",
-        "data",
-        "make",
-        "predictions",
-        "decisions"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "What is Machine Learning?",
-      "section": null,
-      "timestamp": 1781426549.1685946
+      "chapter": "Page 3",
+      "section": "Figure 1",
+      "timestamp": 1781465395.4812145
     },
     {
       "index": 2,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "trains",
-        "using",
-        "labeled",
-        "data",
-        "input",
-        "correct",
-        "output",
-        "goal",
-        "learn",
-        "mapping",
-        "inputs",
-        "outputs"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "1. Supervised Learning",
-      "section": null,
-      "timestamp": 1781426549.2913344
+      "chapter": "Page 3",
+      "section": "Figure 2",
+      "timestamp": 1781465395.6238902
     },
     {
       "index": 3,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "house",
-        "price",
-        "prediction",
-        "email",
-        "spam",
-        "detection",
-        "image",
-        "classification"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Applications:",
-      "section": null,
-      "timestamp": 1781426549.4021645
+      "chapter": "Page 5",
+      "section": "Figure 2",
+      "timestamp": 1781465395.752339
     },
     {
       "index": 4,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "regression",
-        "linear",
-        "logistic",
-        "decision",
-        "trees",
-        "naive",
-        "bayes"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Algorithms:",
-      "section": null,
-      "timestamp": 1781426549.4271705
+      "chapter": "Page 5",
+      "section": "Figure 3",
+      "timestamp": 1781465395.7813084
     },
     {
       "index": 5,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "input",
-        "output",
-        "house",
-        "size",
-        "price",
-        "student",
-        "hours",
-        "studied",
-        "exam",
-        "marks"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Example:",
-      "section": null,
-      "timestamp": 1781426549.4527054
+      "chapter": "Page 6",
+      "section": "Figure 2",
+      "timestamp": 1781465395.813821
     },
     {
       "index": 6,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "uses",
-        "unlabeled",
-        "data",
-        "finds",
-        "hidden",
-        "structures",
-        "patterns"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "2. Unsupervised Learning",
-      "section": null,
-      "timestamp": 1781426549.4799364
+      "chapter": "Page 7",
+      "section": "Figure 2",
+      "timestamp": 1781465395.8456006
     },
     {
       "index": 7,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "customer",
-        "segmentation",
-        "data",
-        "clustering",
-        "market",
-        "basket",
-        "analysis"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Applications:",
-      "section": null,
-      "timestamp": 1781426549.508582
+      "chapter": "Page 8",
+      "section": "Figure 2",
+      "timestamp": 1781465395.879767
     },
     {
       "index": 8,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "means",
-        "hierarchical",
-        "clustering"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Common algorithms:",
-      "section": null,
-      "timestamp": 1781426549.530612
+      "chapter": "Page 8",
+      "section": "Figure 3",
+      "timestamp": 1781465395.9119854
     },
     {
       "index": 9,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "data",
-        "combines",
-        "small",
-        "labeled",
-        "large",
-        "unlabeled",
-        "useful",
-        "when",
-        "labeling",
-        "expensive"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "3. Semi-Supervised Learning",
-      "section": null,
-      "timestamp": 1781426549.559423
+      "chapter": "Page 9",
+      "section": "Figure 2",
+      "timestamp": 1781465395.939005
     },
     {
       "index": 10,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "medical",
-        "image",
-        "classification",
-        "only",
-        "few",
-        "expert",
-        "labeled",
-        "scans"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Example:",
-      "section": null,
-      "timestamp": 1781426549.5884426
+      "chapter": "Page 9",
+      "section": "Figure 3",
+      "timestamp": 1781465395.9751496
     },
     {
       "index": 11,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "agent",
-        "learns",
-        "interacting",
-        "environment",
-        "receives",
-        "rewards",
-        "penalties",
-        "goal",
-        "maximize",
-        "cumulative",
-        "reward"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "4. Reinforcement Learning",
-      "section": null,
-      "timestamp": 1781426549.622602
+      "chapter": "Page 10",
+      "section": "Figure 2",
+      "timestamp": 1781465396.0073903
     },
     {
       "index": 12,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "agent",
-        "environment",
-        "action",
-        "state",
-        "reward"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Components:",
-      "section": null,
-      "timestamp": 1781426549.6467247
+      "chapter": "Page 11",
+      "section": "Figure 2",
+      "timestamp": 1781465396.0380967
     },
     {
       "index": 13,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "robotics",
-        "self",
-        "driving",
-        "cars",
-        "chess",
-        "playing"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Applications:",
-      "section": null,
-      "timestamp": 1781426549.6727276
+      "chapter": "Page 11",
+      "section": "Figure 3",
+      "timestamp": 1781465396.068276
     },
     {
       "index": 14,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "chooses",
-        "parameter",
-        "values",
-        "make",
-        "observed",
-        "data",
-        "most",
-        "likely"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Maximum Likelihood Estimation (MLE)",
-      "section": null,
-      "timestamp": 1781426549.7010055
+      "chapter": "Page 12",
+      "section": "Figure 2",
+      "timestamp": 1781465396.0993001
     },
     {
       "index": 15,
-      "content_type": "code",
+      "content_type": "figure",
       "keywords": [
-        "theta",
-        "hat",
-        "mle",
-        "arg",
-        "max",
-        "data",
-        "mid"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Formula",
-      "section": null,
-      "timestamp": 1781426549.748231
+      "chapter": "Page 12",
+      "section": "Figure 3",
+      "timestamp": 1781465396.129461
     },
     {
       "index": 16,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "given",
-        "several",
-        "possible",
-        "parameter",
-        "values",
-        "pick",
-        "one",
-        "best",
-        "explains",
-        "observed",
-        "data"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Intuition",
-      "section": null,
-      "timestamp": 1781426549.7748759
+      "chapter": "Page 13",
+      "section": "Figure 2",
+      "timestamp": 1781465396.1582196
     },
     {
       "index": 17,
-      "content_type": "code",
+      "content_type": "figure",
       "keywords": [
-        "theta",
-        "data",
-        "map",
-        "prior",
-        "uses",
-        "observed",
-        "hat",
-        "arg",
-        "max",
-        "mle",
-        "maximizes",
-        "information"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Advantages",
-      "section": null,
-      "timestamp": 1781426549.8604183
+      "chapter": "Page 13",
+      "section": "Figure 3",
+      "timestamp": 1781465396.1885364
     },
     {
       "index": 18,
-      "content_type": "code",
+      "content_type": "figure",
       "keywords": [
-        "frac",
-        "mid",
-        "based",
-        "bayes",
-        "theorem",
-        "genui",
-        "math",
-        "block",
-        "widget",
-        "always",
-        "prefetch",
-        "content"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Bayesian Formulation",
-      "section": null,
-      "timestamp": 1781426549.9307594
+      "chapter": "Page 15",
+      "section": "Figure 2",
+      "timestamp": 1781465396.2198405
     },
     {
       "index": 19,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "data",
-        "belief",
-        "prior",
-        "initial",
-        "likelihood",
-        "probability",
-        "given",
-        "hypothesis",
-        "posterior",
-        "updated",
-        "after",
-        "seeing"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Where:",
-      "section": null,
-      "timestamp": 1781426549.9673212
+      "chapter": "Page 16",
+      "section": "Figure 2",
+      "timestamp": 1781465396.2498572
     },
     {
       "index": 20,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "regression",
-        "predicts",
-        "continuous",
-        "numerical",
-        "values"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Regression",
-      "section": null,
-      "timestamp": 1781426549.992845
+      "chapter": "Page 17",
+      "section": "Figure 2",
+      "timestamp": 1781465396.2830796
     },
     {
       "index": 21,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "prediction",
-        "salary",
-        "temperature",
-        "house",
-        "price",
-        "estimation"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Example:",
-      "section": null,
-      "timestamp": 1781426550.019576
+      "chapter": "Page 20",
+      "section": "Figure 2",
+      "timestamp": 1781465396.3156254
     },
     {
       "index": 22,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "relationship",
-        "between",
-        "one",
-        "input",
-        "output",
-        "genui",
-        "math",
-        "block",
-        "widget",
-        "always",
-        "prefetch",
-        "content"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Linear Regression (One Variable)",
-      "section": null,
-      "timestamp": 1781426550.0708086
+      "chapter": "Page 21",
+      "section": "Figure 2",
+      "timestamp": 1781465396.348625
     },
     {
       "index": 23,
-      "content_type": "code",
+      "content_type": "figure",
       "keywords": [
-        "uses",
-        "multiple",
-        "input",
-        "features",
-        "cdots",
-        "useful",
-        "when",
-        "prediction",
-        "depends",
-        "many",
-        "factors",
-        "such"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Linear Regression (Multiple Variables)",
-      "section": null,
-      "timestamp": 1781426550.1150029
+      "chapter": "Page 22",
+      "section": "Figure 2",
+      "timestamp": 1781465396.3779056
     },
     {
       "index": 24,
-      "content_type": "text",
+      "content_type": "figure",
       "keywords": [
-        "optimization",
-        "algorithm",
-        "used",
-        "minimize",
-        "prediction",
-        "error"
+        "figure",
+        "page",
+        "visual",
+        "diagram",
+        "illustration"
       ],
-      "chapter": "Gradient Descent",
-      "section": null,
-      "timestamp": 1781426550.1406982
+      "chapter": "Page 22",
+      "section": "Figure 3",
+      "timestamp": 1781465396.4124858
     },
     {
       "index": 25,
       "content_type": "text",
       "keywords": [
-        "parameters",
-        "compute",
-        "initialize",
-        "randomly",
-        "predictions",
-        "calculate",
-        "cost",
-        "error",
-        "gradients",
-        "update",
-        "repeat",
-        "until"
+        "loader",
+        "program",
+        "object",
+        "keralanotes",
+        "com",
+        "ktu",
+        "memory",
+        "www",
+        "execution",
+        "specified",
+        "record",
+        "study"
       ],
-      "chapter": "Steps",
+      "chapter": "Pages 1-4",
       "section": null,
-      "timestamp": 1781426550.2233393
+      "timestamp": 1781465396.6808267
     },
     {
       "index": 26,
-      "content_type": "code",
+      "content_type": "text",
       "keywords": [
-        "too",
-        "theta",
-        "large",
-        "overshoots",
-        "minimum",
-        "small",
-        "converges",
-        "slowly",
-        "exact",
-        "solution",
-        "learning",
-        "rate"
+        "program",
+        "keralanotes",
+        "com",
+        "loading",
+        "each",
+        "record",
+        "object",
+        "code",
+        "address",
+        "figure",
+        "representation",
+        "www"
       ],
-      "chapter": "Learning rate (\u03b1):",
+      "chapter": "Pages 5-5",
       "section": null,
-      "timestamp": 1781426550.2902873
+      "timestamp": 1781465396.828894
     },
     {
       "index": 27,
       "content_type": "text",
       "keywords": [
-        "computationally",
-        "expensive",
-        "very",
-        "large",
-        "datasets"
+        "bootstrap",
+        "address",
+        "loader",
+        "byte",
+        "object",
+        "code",
+        "memory",
+        "one",
+        "loaded",
+        "device",
+        "keralanotes",
+        "com"
       ],
-      "chapter": "Disadvantage:",
+      "chapter": "Pages 6-6",
       "section": null,
-      "timestamp": 1781426550.318118
+      "timestamp": 1781465396.9917676
     },
     {
       "index": 28,
       "content_type": "text",
       "keywords": [
-        "occurs",
-        "when",
-        "model",
-        "memorizes",
-        "training",
-        "data",
-        "instead",
-        "learning",
-        "general",
-        "patterns"
+        "relocation",
+        "program",
+        "modification",
+        "keralanotes",
+        "com",
+        "loader",
+        "www",
+        "record",
+        "address",
+        "more",
+        "object",
+        "each"
       ],
-      "chapter": "Overfitting",
+      "chapter": "Pages 7-9",
       "section": null,
-      "timestamp": 1781426550.346329
+      "timestamp": 1781465397.139786
     },
     {
       "index": 29,
       "content_type": "text",
       "keywords": [
-        "very",
-        "high",
-        "training",
-        "accuracy",
-        "poor",
-        "performance",
-        "unseen",
-        "data"
+        "keralanotes",
+        "com",
+        "program",
+        "www",
+        "ref",
+        "control",
+        "sections",
+        "consider",
+        "these",
+        "three",
+        "more",
+        "study"
       ],
-      "chapter": "Symptoms",
+      "chapter": "Pages 10-13",
       "section": null,
-      "timestamp": 1781426550.369333
+      "timestamp": 1781465397.2895997
     },
     {
       "index": 30,
       "content_type": "text",
       "keywords": [
-        "more",
-        "training",
-        "data",
-        "regularization",
-        "simpler",
-        "models",
-        "cross",
-        "validation"
+        "keralanotes",
+        "com",
+        "loader",
+        "www",
+        "linking",
+        "control",
+        "programs",
+        "external",
+        "program",
+        "section",
+        "address",
+        "symbol"
       ],
-      "chapter": "Prevention",
+      "chapter": "Pages 12-14",
       "section": null,
-      "timestamp": 1781426550.4008808
+      "timestamp": 1781465397.456597
     },
     {
       "index": 31,
       "content_type": "text",
       "keywords": [
-        "spam",
-        "sigma",
-        "frac",
-        "logistic",
-        "regression",
-        "used",
-        "binary",
-        "classification",
-        "examples",
+        "control",
+        "keralanotes",
+        "com",
         "pass",
-        "fail",
-        "disease"
+        "record",
+        "section",
+        "csaddr",
+        "www",
+        "address",
+        "value",
+        "loader",
+        "program"
       ],
-      "chapter": "Linear Methods for Classification",
+      "chapter": "Pages 15-17",
       "section": null,
-      "timestamp": 1781426550.4589303
+      "timestamp": 1781465397.8332086
     },
     {
       "index": 32,
       "content_type": "text",
       "keywords": [
-        "based",
-        "bayes",
-        "theorem",
-        "assumes",
-        "features",
-        "conditionally",
-        "independent"
+        "loader",
+        "program",
+        "library",
+        "keralanotes",
+        "com",
+        "external",
+        "control",
+        "name",
+        "object",
+        "routines",
+        "include",
+        "read"
       ],
-      "chapter": "Naive Bayes",
+      "chapter": "Pages 17-18",
       "section": null,
-      "timestamp": 1781426550.483141
+      "timestamp": 1781465397.989249
     },
     {
       "index": 33,
       "content_type": "text",
       "keywords": [
-        "well",
-        "fast",
-        "works",
-        "text",
-        "classification",
-        "performs",
-        "small",
-        "datasets"
+        "linking",
+        "loader",
+        "external",
+        "program",
+        "keralanotes",
+        "com",
+        "library",
+        "references",
+        "loading",
+        "load",
+        "execution",
+        "linkage"
       ],
-      "chapter": "Advantages",
+      "chapter": "Pages 19-19",
       "section": null,
-      "timestamp": 1781426550.5092373
+      "timestamp": 1781465398.1321292
     },
     {
       "index": 34,
       "content_type": "text",
       "keywords": [
-        "spam",
-        "detection",
-        "sentiment",
-        "analysis",
-        "document",
-        "classification"
+        "dynamic",
+        "linking",
+        "keralanotes",
+        "com",
+        "used",
+        "linkage",
+        "subroutine",
+        "www",
+        "planner",
+        "subroutines",
+        "editors",
+        "program"
       ],
-      "chapter": "Applications",
+      "chapter": "Pages 20-22",
       "section": null,
-      "timestamp": 1781426550.532938
+      "timestamp": 1781465398.3312995
     },
     {
       "index": 35,
       "content_type": "text",
       "keywords": [
-        "tree",
-        "based",
-        "classifier",
-        "where",
-        "root",
-        "starting",
-        "decision",
-        "internal",
-        "nodes",
-        "attribute",
-        "tests",
-        "leaves"
-      ],
-      "chapter": "Decision Tree (ID3 Algorithm)",
-      "section": null,
-      "timestamp": 1781426550.5654829
-    },
-    {
-      "index": 36,
-      "content_type": "text",
-      "keywords": [
-        "gain",
-        "attribute",
-        "compute",
-        "entropy",
-        "calculate",
-        "information",
-        "each",
-        "choose",
-        "highest",
-        "split",
-        "data",
-        "repeat"
-      ],
-      "chapter": "ID3 selects attributes using Information Gain. Process",
-      "section": null,
-      "timestamp": 1781426550.6026654
-    },
-    {
-      "index": 37,
-      "content_type": "text",
-      "keywords": [
-        "easy",
-        "interpret",
-        "handles",
-        "categorical",
-        "data",
-        "well"
-      ],
-      "chapter": "Advantages",
-      "section": null,
-      "timestamp": 1781426550.6284177
-    },
-    {
-      "index": 38,
-      "content_type": "text",
-      "keywords": [
-        "simplest",
-        "neural",
-        "network",
-        "model",
-        "binary",
-        "classification"
-      ],
-      "chapter": "Perceptron",
-      "section": null,
-      "timestamp": 1781426550.6535885
-    },
-    {
-      "index": 39,
-      "content_type": "code",
-      "keywords": [
-        "cases",
-        "text",
-        "inputs",
-        "weights",
-        "weighted",
-        "sum",
-        "activation",
-        "function",
-        "output",
-        "decision",
-        "rule",
-        "begin"
-      ],
-      "chapter": "Components",
-      "section": null,
-      "timestamp": 1781426550.7056453
-    },
-    {
-      "index": 40,
-      "content_type": "text",
-      "keywords": [
-        "layer",
-        "input",
-        "one",
+        "keralanotes",
+        "com",
+        "record",
+        "www",
+        "dynamic",
+        "address",
         "more",
-        "hidden",
-        "layers",
-        "output",
-        "information",
-        "flows",
-        "only",
-        "forward",
-        "direction"
+        "loader",
+        "loaded",
+        "memory",
+        "absolute",
+        "loading"
       ],
-      "chapter": "Contains:",
+      "chapter": "Pages 22-23",
       "section": null,
-      "timestamp": 1781426550.7373166
-    },
-    {
-      "index": 41,
-      "content_type": "text",
-      "keywords": [
-        "learns",
-        "complex",
-        "nonlinear",
-        "relationships",
-        "used",
-        "image",
-        "recognition",
-        "nlp",
-        "speech",
-        "processing"
-      ],
-      "chapter": "Advantages",
-      "section": null,
-      "timestamp": 1781426550.7670765
-    },
-    {
-      "index": 42,
-      "content_type": "code",
-      "keywords": [
-        "sigmoid",
-        "sigma",
-        "frac",
-        "output",
-        "smooth",
-        "differentiable",
-        "used",
-        "probabilities"
-      ],
-      "chapter": "Activation Functions",
-      "section": null,
-      "timestamp": 1781426550.812304
-    },
-    {
-      "index": 43,
-      "content_type": "code",
-      "keywords": [
-        "max",
-        "fast",
-        "computation",
-        "avoids",
-        "saturation",
-        "positive",
-        "values",
-        "most",
-        "widely",
-        "used",
-        "deep",
-        "learning"
-      ],
-      "chapter": "2. ReLU (Rectified Linear Unit)",
-      "section": null,
-      "timestamp": 1781426550.862711
-    },
-    {
-      "index": 44,
-      "content_type": "code",
-      "keywords": [
-        "tanh",
-        "frac",
-        "output",
-        "range",
-        "zero",
-        "centered",
-        "often",
-        "performs",
-        "better",
-        "than",
-        "sigmoid",
-        "hidden"
-      ],
-      "chapter": "3. Tanh",
-      "section": null,
-      "timestamp": 1781426550.9037626
-    },
-    {
-      "index": 45,
-      "content_type": "text",
-      "keywords": [
-        "backpropagation",
-        "trains",
-        "neural",
-        "networks",
-        "updating",
-        "weights",
-        "reduce",
-        "prediction",
-        "error"
-      ],
-      "chapter": "Backpropagation Algorithm",
-      "section": null,
-      "timestamp": 1781426550.9299982
-    },
-    {
-      "index": 46,
-      "content_type": "text",
-      "keywords": [
-        "error",
-        "compute",
-        "forward",
-        "propagation",
-        "output",
-        "calculate",
-        "loss",
-        "propagate",
-        "backward",
-        "through",
-        "layers",
-        "gradients"
-      ],
-      "chapter": "Steps",
-      "section": null,
-      "timestamp": 1781426550.9734952
-    },
-    {
-      "index": 47,
-      "content_type": "text",
-      "keywords": [
-        "svm",
-        "supervised",
-        "learning",
-        "algorithm",
-        "mainly",
-        "used",
-        "classification",
-        "sometimes",
-        "regression"
-      ],
-      "chapter": "Support Vector Machine (SVM)",
-      "section": null,
-      "timestamp": 1781426551.007071
-    },
-    {
-      "index": 48,
-      "content_type": "text",
-      "keywords": [
-        "margin",
-        "hyperplane",
-        "data",
-        "points",
-        "find",
-        "optimal",
-        "separates",
-        "classes",
-        "maximum",
-        "support",
-        "vectors",
-        "closest"
-      ],
-      "chapter": "Key Idea",
-      "section": null,
-      "timestamp": 1781426551.048469
-    },
-    {
-      "index": 49,
-      "content_type": "text",
-      "keywords": [
-        "effective",
-        "high",
-        "dimensional",
-        "spaces",
-        "works",
-        "well",
-        "small",
-        "medium",
-        "sized",
-        "datasets",
-        "model",
-        "nonlinear"
-      ],
-      "chapter": "Advantages",
-      "section": null,
-      "timestamp": 1781426551.0800467
-    },
-    {
-      "index": 50,
-      "content_type": "text",
-      "keywords": [
-        "recognition",
-        "face",
-        "text",
-        "classification",
-        "bioinformatics",
-        "handwriting"
-      ],
-      "chapter": "Common Applications",
-      "section": null,
-      "timestamp": 1781426551.137612
-    },
-    {
-      "index": 51,
-      "content_type": "text",
-      "keywords": [
-        "key",
-        "point",
-        "data",
-        "learning",
-        "using",
-        "supervised",
-        "labeled",
-        "unlabeled",
-        "values",
-        "outputs",
-        "uses",
-        "semi"
-      ],
-      "chapter": "Quick Exam Revision Topic Key Point",
-      "section": null,
-      "timestamp": 1781426551.2688224
+      "timestamp": 1781465398.4704018
     }
   ],
   "pushed_chunk_indexes": [
@@ -1003,40 +638,28 @@
     32,
     33,
     34,
-    35,
-    36,
-    37,
-    38,
-    39,
-    40,
-    41,
-    42,
-    43,
-    44,
-    45,
-    46,
-    47,
-    48,
-    49,
-    50,
-    51
+    35
   ],
   "pushed_batches": [
     {
       "batch_size": 25,
       "last_chunk_index": 24,
-      "timestamp": 1781426550.332982
+      "timestamp": 1781465396.7475936
     },
     {
-      "batch_size": 25,
-      "last_chunk_index": 49,
-      "timestamp": 1781426551.2067144
-    },
-    {
-      "batch_size": 2,
-      "last_chunk_index": 51,
-      "timestamp": 1781426551.280583
+      "batch_size": 11,
+      "last_chunk_index": 35,
+      "timestamp": 1781465398.5520391
     }
   ],
-  "completed_at": 1781426551.2926016
+  "completed_at": 1781465398.582198,
+  "report": {
+    "pages_processed": 23,
+    "images_extracted": 25,
+    "equations_preserved": 0,
+    "graphs_described": 0,
+    "chunks_generated": 36,
+    "embeddings_generated": 36,
+    "inserted_rows": 36
+  }
 }

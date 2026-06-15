@@ -41,30 +41,19 @@ export default async function StudentDashboardPage() {
   }
   const computedSemester = Math.max(1, Math.min(8, suggested));
 
-  // Fetch subjects student is enrolled in for their branch and selected semester
-  const enrollments = await prisma.courseEnrollment.findMany({
+  const subjects = await prisma.subject.findMany({
     where: {
-      studentId: student.id,
-      status: "ACTIVE",
-      subject: {
-        branchId: student.branchId,
-        semester: {
-          semesterNumber: student.selectedSemester,
-        },
-        isArchived: false,
+      branchId: student.branchId ?? undefined,
+      semester: {
+        semesterNumber: student.selectedSemester,
       },
-    },
-    include: {
-      subject: true,
+      schemeYear: student.currentScheme ?? undefined,
+      isArchived: false,
     },
     orderBy: {
-      subject: {
-        code: "asc",
-      },
+      code: "asc",
     },
   });
-
-  const subjects = enrollments.map((e) => e.subject);
 
   // Fetch chat sessions grouped/sorted by subject
   const chatSessions = await prisma.chatSession.findMany({

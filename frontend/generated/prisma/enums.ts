@@ -52,13 +52,16 @@ export const DocumentStatus = {
   APPROVED: 'APPROVED',
   QUEUED: 'QUEUED',
   PARSING: 'PARSING',
+  OCR: 'OCR',
+  IMAGE_EXTRACTION: 'IMAGE_EXTRACTION',
   CHUNKING: 'CHUNKING',
   EMBEDDING: 'EMBEDDING',
   INDEXING: 'INDEXING',
   READY: 'READY',
   FAILED: 'FAILED',
   ARCHIVED: 'ARCHIVED',
-  REJECTED: 'REJECTED'
+  REJECTED: 'REJECTED',
+  PENDING: 'PENDING'
 } as const
 
 export type DocumentStatus = (typeof DocumentStatus)[keyof typeof DocumentStatus]

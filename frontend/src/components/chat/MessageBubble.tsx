@@ -176,6 +176,23 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ role, content, isS
                       ol: ({ node: _node, ...props }) => <ol className="my-2 ml-4 list-decimal marker:text-indigo-400" {...props} />,
                       li: ({ node: _node, ...props }) => <li className="pl-1 mb-1" {...props} />,
                       strong: ({ node: _node, ...props }) => <strong className="font-semibold text-indigo-100" {...props} />,
+                      img: ({ node: _node, ...props }) => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img 
+                          className="max-w-full h-auto rounded-xl border border-indigo-500/20 my-3 shadow-md object-contain max-h-96" 
+                          alt={props.alt || "Syllabus Figure"}
+                          {...props} 
+                        />
+                      ),
+                      table: ({ node: _node, ...props }) => (
+                        <div className="overflow-x-auto my-3 border border-indigo-500/20 rounded-xl bg-slate-950/45">
+                          <table className="w-full text-left border-collapse text-xs md:text-sm" {...props} />
+                        </div>
+                      ),
+                      thead: ({ node: _node, ...props }) => <thead className="bg-white/5 border-b border-border/40 text-muted-foreground font-medium" {...props} />,
+                      th: ({ node: _node, ...props }) => <th className="p-3 font-semibold text-indigo-300 font-medium" {...props} />,
+                      td: ({ node: _node, ...props }) => <td className="p-3 border-b border-white/5 text-foreground" {...props} />,
+                      tr: ({ node: _node, ...props }) => <tr className="hover:bg-white/5 transition-all" {...props} />,
                     }}
                   >
                     {content}
@@ -193,6 +210,28 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ role, content, isS
               </>
             )}
           </div>
+
+          {!isUser && parsedMeta?.images && parsedMeta.images.length > 0 && (
+            <div className="mt-4 pt-3 border-t border-indigo-500/10 space-y-3">
+              <span className="text-[10px] text-muted-foreground/60 font-semibold uppercase tracking-wider block">Attached Figures:</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {parsedMeta.images.map((img: any) => (
+                  <div key={img.path} className="flex flex-col gap-1 border border-indigo-500/15 rounded-xl p-2 bg-indigo-500/5 shadow-sm hover:border-indigo-500/35 transition-all">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={img.path}
+                      alt={img.caption || "Attached Figure"}
+                      className="rounded-lg max-h-48 w-full object-contain bg-slate-950/60 border border-white/5"
+                    />
+                    <div className="flex justify-between items-center text-[9px] text-muted-foreground px-1 mt-1">
+                      <span className="font-semibold text-indigo-300 truncate max-w-[150px]" title={img.caption}>{img.caption || "Page Figure"}</span>
+                      {img.page !== undefined && <span>Page {img.page}</span>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </Card>
 
         {/* Citations & Transparency Panel inside assistant bubbles */}

@@ -152,6 +152,22 @@ export function useChatStream(options: UseChatStreamOptions = {}) {
                                 continue;
                             }
 
+                            // ── Handle `event: metadata` ─────────────────────
+                            if (eventType === 'metadata') {
+                                try {
+                                    const parsed = JSON.parse(dataLine);
+                                    setMessages((prev) =>
+                                        prev.map((msg) =>
+                                            msg.id === aiMessageId
+                                                ? { ...msg, metadata: parsed }
+                                                : msg
+                                        )
+                                    );
+                                } catch { /* ignore */ }
+                                lineEnd = buffer.indexOf('\n\n');
+                                continue;
+                            }
+
                             // ── Handle regular data frames ───────────────────
                             if (dataLine === '[DONE]') {
                                 done = true;

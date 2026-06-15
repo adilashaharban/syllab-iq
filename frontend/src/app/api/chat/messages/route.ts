@@ -32,17 +32,25 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Session not found" }, { status: 404 });
   }
 
-  const enrollment = await prisma.courseEnrollment.findUnique({
-    where: {
-      studentId_subjectId: {
-        studentId: session.userId,
-        subjectId: chatSession.subjectId,
-      },
-    },
-    include: { subject: true },
+  const student = await prisma.user.findUnique({
+    where: { id: session.userId },
+    select: { branchId: true, currentScheme: true },
   });
 
-  if (!enrollment || enrollment.status !== "ACTIVE" || enrollment.subject.isArchived) {
+  if (!student || !student.branchId) {
+    return NextResponse.json({ error: "Student not found or not onboarded" }, { status: 403 });
+  }
+
+  const subject = await prisma.subject.findFirst({
+    where: {
+      id: chatSession.subjectId,
+      branchId: student.branchId ?? undefined,
+      schemeYear: student.currentScheme ?? undefined,
+      isArchived: false,
+    },
+  });
+
+  if (!subject) {
     return NextResponse.json({ error: "Unauthorized subject access" }, { status: 403 });
   }
 

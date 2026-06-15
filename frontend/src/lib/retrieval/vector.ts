@@ -11,6 +11,7 @@ export interface TextChunkCandidate {
   priority: number;
   score: number;
   boundingBoxes?: any;
+  metadata?: any;
 }
 
 export async function fetchTextChunks(params: {
@@ -76,6 +77,7 @@ export async function fetchTextChunks(params: {
               version: matchingVer.version,
               priority: priorityVal,
               score: 0.95,
+              metadata: chunk.metadata,
             });
           }
         });

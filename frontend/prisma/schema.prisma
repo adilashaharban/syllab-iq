@@ -38,6 +38,8 @@ enum DocumentStatus {
   APPROVED
   QUEUED
   PARSING
+  OCR
+  IMAGE_EXTRACTION
   CHUNKING
   EMBEDDING
   INDEXING
@@ -45,6 +47,7 @@ enum DocumentStatus {
   FAILED
   ARCHIVED
   REJECTED
+  PENDING
 }
 
 enum DocumentCategory {

@@ -95,17 +95,16 @@ export async function POST(request: NextRequest) {
       sessionId = null;
     } else {
       finalSubjectId = existing.subjectId;
-      // Verify enrollment for the existing session's subject
-      const enrollment = await prisma.courseEnrollment.findUnique({
+      // Verify student access for the existing session's subject
+      const subject = await prisma.subject.findFirst({
         where: {
-          studentId_subjectId: {
-            studentId: authSession.userId,
-            subjectId: existing.subjectId,
-          },
+          id: existing.subjectId,
+          branchId: student.branchId ?? undefined,
+          schemeYear: student.currentScheme ?? undefined,
+          isArchived: false,
         },
-        include: { subject: true },
       });
-      if (!enrollment || enrollment.status !== "ACTIVE" || enrollment.subject.isArchived) {
+      if (!subject) {
         return NextResponse.json({ error: "Unauthorized subject access" }, { status: 403 });
       }
     }
@@ -116,26 +115,22 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "subjectId is required for new sessions" }, { status: 400 });
     }
 
-    // Verify enrollment
-    const enrollment = await prisma.courseEnrollment.findUnique({
+    // Verify student access to subject
+    const subject = await prisma.subject.findFirst({
       where: {
-        studentId_subjectId: {
-          studentId: authSession.userId,
-          subjectId: finalSubjectId,
-        },
+        id: finalSubjectId,
+        branchId: student.branchId ?? undefined,
+        schemeYear: student.currentScheme ?? undefined,
+        isArchived: false,
       },
       include: {
-        subject: {
-          include: { semester: true },
-        },
+        semester: true,
       },
     });
 
-    if (!enrollment || enrollment.status !== "ACTIVE" || enrollment.subject.isArchived) {
+    if (!subject) {
       return NextResponse.json({ error: "Unauthorized subject access" }, { status: 403 });
     }
-
-    const subject = enrollment.subject;
 
     const newSession = await prisma.chatSession.create({
       data: {
@@ -429,17 +424,77 @@ export async function POST(request: NextRequest) {
 
       // ── Persist AI response & update session timestamp ────────────────────
       if (fullResponse) {
+        // Extract figure IDs from retrieved text chunks
+        const figureIds: number[] = [];
+        topResults.forEach((t) => {
+          if (t.metadata?.figure_ids && Array.isArray(t.metadata.figure_ids)) {
+            t.metadata.figure_ids.forEach((id: any) => {
+              const numId = Number(id);
+              if (!isNaN(numId) && !figureIds.includes(numId)) {
+                figureIds.push(numId);
+              }
+            });
+          }
+        });
+
+        let linkedFigures: any[] = [];
+        if (figureIds.length > 0) {
+          try {
+            linkedFigures = await prisma.figure.findMany({
+              where: { id: { in: figureIds } },
+              select: { imagePath: true, caption: true, pageNumber: true },
+            });
+          } catch (prismaErr) {
+            console.error("[ERROR] Failed to fetch linked figures from SQLite:", prismaErr);
+          }
+        }
+
+        const rawImagesList = [
+          ...topResults
+            .filter((t) => t.type === "FIGURE" && t.metadata?.imagePath)
+            .map((t) => ({
+              path: t.metadata.imagePath,
+              caption: t.text,
+              page: t.page,
+            })),
+          ...linkedFigures.map((f) => ({
+            path: f.imagePath,
+            caption: f.caption,
+            page: f.pageNumber,
+          }))
+        ];
+
+        // Deduplicate by path
+        const seenPaths = new Set<string>();
+        const imagesList = rawImagesList.filter((img) => {
+          if (!img.path) return false;
+          if (seenPaths.has(img.path)) {
+            return false;
+          }
+          seenPaths.add(img.path);
+          return true;
+        });
+
         // Document provenance mapping on citations
         const finalMetadata = {
           confidence: topResults.length > 3 ? "HIGH" : topResults.length > 0 ? "MEDIUM" : "LOW",
           citations: buildCitationsMetadata(topResults),
           bookFilter: bookOnlyMode,
           searchScope: matchingPrereqCodes.length > 0 ? "Syllabus + Prerequisites" : "Syllabus only",
+          images: imagesList,
           // Version tracing
           retrievalVersion: "v3.0",
           parserVersion: "docling-v2.0",
           rerankerVersion: "multimodal-reranker-v1",
         };
+
+        // Print debug logs as required
+        console.log("--- MULTIMODAL RETRIEVAL DEBUG LOGS ---");
+        console.log("Retrieved text/chunk items:", topResults.filter(t => t.type === "CHUNK" || t.type === "TEXT" || t.type === "TABLE" || t.type === "EQUATION").map(t => ({ id: t.id, type: t.type, text: t.text.slice(0, 100) })));
+        console.log("Retrieved figure chunks:", topResults.filter(t => t.type === "FIGURE").map(t => ({ id: t.id, caption: t.text })));
+        console.log("Image paths returned:", imagesList.map(img => img.path));
+        console.log("Final API payload metadata:", JSON.stringify(finalMetadata, null, 2));
+        console.log("---------------------------------------");
 
         await prisma.chatMessage.create({
           data: {
@@ -454,6 +509,13 @@ export async function POST(request: NextRequest) {
           where: { id: sessionId! },
           data: { updatedAt: new Date() },
         });
+
+        // Stream the metadata event to the frontend
+        controller.enqueue(
+          encoder.encode(
+            `event: metadata\ndata: ${JSON.stringify(finalMetadata)}\n\n`
+          )
+        );
       }
 
       controller.enqueue(encoder.encode("data: [DONE]\n\n"));

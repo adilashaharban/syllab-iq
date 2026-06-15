@@ -5,7 +5,7 @@ import time
 from contextlib import asynccontextmanager
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
@@ -128,13 +128,24 @@ async def chat_sync(req: ChatRequest):
     logger.info("Sync chat request: %s", question[:80])
 
     try:
-        result = ""
-        async for chunk in rag_pipeline_stream(
+        from agent import run_two_agent_pipeline
+        final_answer = await run_two_agent_pipeline(
             question,
             max_context_tokens=MAX_CONTEXT_TOKENS,
-        ):
-            result += chunk
-        return {"answer": result}
+        )
+        return {
+            "answer": final_answer.answer,
+            "confidence_note": final_answer.confidence_note,
+            "images": [
+                {
+                    "figure_id": img.figure_id,
+                    "path": img.path,
+                    "page": img.page,
+                    "caption": img.caption
+                }
+                for img in final_answer.images
+            ]
+        }
     except Exception as exc:
         logger.exception("Sync chat error")
         raise HTTPException(status_code=500, detail=str(exc))
@@ -151,7 +162,7 @@ class IngestRequest(BaseModel):
 
 
 @app.post("/ingest")
-async def ingest_document(req: IngestRequest):
+async def ingest_document(req: IngestRequest, background_tasks: BackgroundTasks):
     logger.info("Ingest request for document version %d (checksum: %s): %s", req.documentVersionId, req.checksum, req.filePath)
     
     # Resolve absolute path
@@ -178,47 +189,34 @@ async def ingest_document(req: IngestRequest):
 
     path_to_ingest = abs_path
 
-    start_time = time.perf_counter()
-    try:
-        from chunk_and_push import process_and_store_md, EMBED_BACKEND
-        loop = asyncio.get_running_loop()
-        # Pass custom metadata
-        meta = {
-            "source": req.originalFilename,
-            "subject": req.subjectName,
-            "semester": req.semesterNumber,
-            "department": "Engineering",
-            "document_id": req.documentId,
-            "document_version_id": req.documentVersionId,
-            "checksum": req.checksum,
-        }
-        
-        # Run in standard thread pool executor
-        chunks_pushed = await loop.run_in_executor(
-            None,
-            lambda: process_and_store_md(path_to_ingest, False, meta)
-        )
-        
-        duration_ms = int((time.perf_counter() - start_time) * 1000)
-        logger.info("Ingestion completed: %d chunks pushed in %d ms", chunks_pushed, duration_ms)
-        
-        return {
-            "success": True,
-            "chunkCount": chunks_pushed,
-            "embeddingModel": EMBED_BACKEND,
-            "processingTimeMs": duration_ms,
-            "error": None
-        }
-    except Exception as exc:
-        logger.exception("Ingestion failed")
-        duration_ms = int((time.perf_counter() - start_time) * 1000)
-        return {
-            "success": False,
-            "chunkCount": 0,
-            "embeddingModel": "local",
-            "processingTimeMs": duration_ms,
-            "error": str(exc)
-        }
+    from chunk_and_push import process_and_store_md, EMBED_BACKEND
+    meta = {
+        "source": req.originalFilename,
+        "subject": req.subjectName,
+        "semester": req.semesterNumber,
+        "department": "Engineering",
+        "document_id": req.documentId,
+        "document_version_id": req.documentVersionId,
+        "checksum": req.checksum,
+    }
+    
+    # Run in background to prevent HTTP timeouts
+    def run_ingestion():
+        try:
+            logger.info("Starting background ingestion for version %d...", req.documentVersionId)
+            process_and_store_md(path_to_ingest, False, meta)
+            logger.info("Background ingestion completed for version %d.", req.documentVersionId)
+        except Exception as bg_exc:
+            logger.error("Background ingestion failed for version %d: %s", req.documentVersionId, bg_exc)
+
+    background_tasks.add_task(run_ingestion)
+    
+    return {
+        "success": True,
+        "queued": True,
+        "embeddingModel": EMBED_BACKEND,
+        "error": None
+    }
 
 
 class RetrieveRequest(BaseModel):
@@ -246,7 +244,8 @@ async def retrieve_chunks(req: RetrieveRequest):
                     {
                         "text": c.text,
                         "filename": c.filename,
-                        "chunk_index": c.chunk_index
+                        "chunk_index": c.chunk_index,
+                        "metadata": c.metadata
                     }
                     for c in chunks
                 ]

@@ -19,17 +19,25 @@ export async function GET(request: NextRequest) {
   const subjectId = subjectIdStr ? parseInt(subjectIdStr, 10) : null;
 
   if (subjectId) {
-    // Subject locking: Verify the student is active in this course/subject
-    const enrollment = await prisma.courseEnrollment.findUnique({
-      where: {
-        studentId_subjectId: {
-          studentId: session.userId,
-          subjectId: subjectId,
-        },
-      },
-      include: { subject: true },
+    // Subject locking: Verify the student has access based on branch, scheme, and non-archived status
+    const student = await prisma.user.findUnique({
+      where: { id: session.userId },
+      select: { branchId: true, currentScheme: true },
     });
-    if (!enrollment || enrollment.status !== "ACTIVE" || enrollment.subject.isArchived) {
+    if (!student || !student.branchId) {
+      return NextResponse.json({ error: "Student not found or not onboarded" }, { status: 403 });
+    }
+
+    const subject = await prisma.subject.findFirst({
+      where: {
+        id: subjectId,
+        branchId: student.branchId ?? undefined,
+        schemeYear: student.currentScheme ?? undefined,
+        isArchived: false,
+      },
+    });
+
+    if (!subject) {
       return NextResponse.json({ error: "Unauthorized subject access" }, { status: 403 });
     }
   }
