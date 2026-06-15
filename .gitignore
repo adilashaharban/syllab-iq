@@ -1,12 +1,101 @@
-# Python-generated files
-__pycache__/
-*.py[oc]
-build/
+# =========================
+# Node.js / Next.js
+# =========================
+node_modules/
+.next/
+out/
 dist/
-wheels/
-*.egg-info
+build/
 
-# Virtual environments
-.venv
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# =========================
+# Environment Variables
+# =========================
 .env
-config.py
+.env.*
+!.env.example
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Local databases
+# =========================
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# Uploaded PDFs
+# =========================
+frontend/public/uploads/
+
+# =========================
+# Extracted figures/images
+# =========================
+frontend/public/extracted_images/
+
+# =========================
+# Temporary files
+# =========================
+tmp/
+temp/
+*.tmp
+
+# =========================
+# Coverage
+# =========================
+coverage/
+
+# =========================
+# Python caches
+# =========================
+.cache/
+
+# =========================
+# Generated embeddings/cache
+# (adjust if applicable)
+# =========================
+*.npy
+*.npz
+
+# =========================
+# Local model downloads
+# =========================
+models/
+checkpoints/
+
+# =========================
+# Uvicorn/FastAPI logs
+# =========================
+*.log
